@@ -58,14 +58,21 @@ before_script:
 #- emulator -avd test -no-audio -no-window &
 #- android-wait-for-emulator
 #- adb shell input keyevent 82 &
-- cd $JPM_ADB_PATH
-- adb devices -l
-- adb -s emulator-5554 install app/build/outputs/apk/app-debug.apk
-- adb shell am start -a android.intent.action.MAIN -n com.android.settings/.Settings
+#- cd $JPM_ADB_PATH
+#- adb devices -l
+#- adb -s emulator-5554 install app/build/outputs/apk/app-debug.apk
+#- adb shell am start -a android.intent.action.MAIN -n com.android.settings/.Settings
 script:
 - "./gradlew assembleDebug && ./gradlew lintDebug &&./gradlew testDebug"
 after_success:
 - "./gradlew jacocoTestReport coveralls"
 - codecov
 - sonar-scanner
+deploy:
+ provider: heroku
+ api_key: "c3578822-2ed0-48f5-a159-7d89fc4d5c59"
+ skip_cleanup: true
+ on:
+        repo: t00180243/CalculatorApp
+        branch: master
 
