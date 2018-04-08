@@ -58,7 +58,7 @@ before_script:
 #- android-wait-for-emulator
 - adb shell input keyevent 82 &
 - adb devices -l
-- adb install app/build/outputs/apk/app-debug.apk
+- adb -s 4200f31496b43300 install app/build/outputs/apk/app-debug.apk
 - adb shell am start -a android.intent.action.MAIN -n com.android.settings/.Settings
 script:
 - "./gradlew assembleDebug && ./gradlew lintDebug &&./gradlew testDebug"
