@@ -25,14 +25,14 @@ android:
   - build-tools-26.0.2
   - build-tools-27.0.3
   - android-26
-  - android-25
+  - android-22
   - extra-google-google_play_services
   - addon-google_apis-google-26
-  - addon-google_apis-google-25
+  - addon-google_apis-google-22
   - extra-google-m2repository
   - extra-android-support
   - extra-android-m2repository
-  - sys-img-armeabi-v7a-android-26
+
   licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
@@ -50,8 +50,7 @@ addons:
       secure: 997c8e9fb9b2709d2007f80119950ddca7071034
 before_script:
 - android list targets
-- android list sdk --extended --no-ui --all
-- echo no | android create avd --force -n test -t android-21 --abi x86
+- echo yes | android create avd --force -n test -t android-22
 script:
 - "./gradlew assembleDebug && ./gradlew lintDebug &&./gradlew testDebug"
 after_success:
