@@ -56,9 +56,10 @@ before_script:
 #- echo no | android create avd --force -n test -t 4200f31496b43300 --abi google_apis/x86
 #- emulator -avd test -no-audio -no-window &
 #- android-wait-for-emulator
-- adb shell input keyevent 82 &
+#- adb shell input keyevent 82 &
+- adb kill-server
 - adb devices -l
-- adb -s 4200f31496b43300 install app/build/outputs/apk/app-debug.apk
+- adb -s emulator-5554 install app/build/outputs/apk/app-debug.apk
 - adb shell am start -a android.intent.action.MAIN -n com.android.settings/.Settings
 script:
 - "./gradlew assembleDebug && ./gradlew lintDebug &&./gradlew testDebug"
