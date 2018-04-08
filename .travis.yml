@@ -72,6 +72,7 @@ after_success:
 deploy:
  provider: heroku
  api_key: "c3578822-2ed0-48f5-a159-7d89fc4d5c59"
+ app: calculator-mobileapp
  skip_cleanup: true
  on:
         repo: t00180243/CalculatorApp
