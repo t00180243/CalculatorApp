@@ -23,12 +23,15 @@ android:
   - platform-tools
   - tools
   - build-tools-26.0.2
-  - build-tools-27.0.3
-  - android-26
+  - build-tools-25.0.1
+  - build-tools-22.0.1
+  - android-25
   - android-22
   - extra-google-google_play_services
-  - addon-google_apis-google-26
+  - addon-google_apis-google-25
   - addon-google_apis-google-22
+  - sys-img-x86-google_apis-22
+  - sys-img-x86-google_apis-25
   - extra-google-m2repository
   - extra-android-support
   - extra-android-m2repository
