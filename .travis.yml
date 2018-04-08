@@ -53,7 +53,10 @@ addons:
       secure: 997c8e9fb9b2709d2007f80119950ddca7071034
 before_script:
 - android list targets
-- echo yes | android create avd --force -n test -t android-22 --abi x86
+- echo no | android create avd --force -n test -t android-22 --abi x86
+- emulator -avd test -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 script:
 - "./gradlew assembleDebug && ./gradlew lintDebug &&./gradlew testDebug"
 after_success:
