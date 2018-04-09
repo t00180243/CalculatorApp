@@ -37,6 +37,7 @@ android:
   - extra-google-m2repository
   - extra-android-support
   - extra-android-m2repository
+  - sys-img-armeabi-v7a-android-22
 
   licenses:
   - android-sdk-preview-license-.+
@@ -55,7 +56,7 @@ addons:
       secure: 997c8e9fb9b2709d2007f80119950ddca7071034
 before_script:
 - android list targets
-#- echo no | android create avd --force -n test -t 4200f31496b43300 --abi google_apis/x86
+- echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
 #- emulator -avd test -no-audio -no-window &
 #- android-wait-for-emulator
 #- adb shell input keyevent 82 &
@@ -69,12 +70,12 @@ after_success:
 - "./gradlew jacocoTestReport coveralls"
 - codecov
 - sonar-scanner
-deploy:
- provider: heroku
- api_key: "c3578822-2ed0-48f5-a159-7d89fc4d5c59"
- app: calculator-mobileapp
- skip_cleanup: true
- on:
-        repo: t00180243/CalculatorApp
-        branch: master
+#deploy:
+ #provider: heroku
+# api_key: "c3578822-2ed0-48f5-a159-7d89fc4d5c59"
+ #app: calculator-mobileapp
+ #skip_cleanup: true
+ #on:
+        #repo: t00180243/CalculatorApp
+        #branch: master
 
