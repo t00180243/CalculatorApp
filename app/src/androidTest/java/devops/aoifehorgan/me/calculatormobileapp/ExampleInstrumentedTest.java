@@ -30,7 +30,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("devops.aoifehorgan.me.calculatormobileapplication", appContext.getPackageName());
+
     }
 
     @Rule
@@ -38,7 +38,7 @@ public class ExampleInstrumentedTest {
             new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testButtons() {
+    public void testAddition() {
         // Type text and then press the button.
         onView(withId(R.id.button2)).perform(click());
         onView(withId(R.id.buttonAdd)).perform(click());
@@ -47,15 +47,6 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.buttonEql)).perform(click());
         onView(withId(R.id.textViewAns)).check(matches(withText("4")));
 
-        onView(withId(R.id.button4)).perform(click());
-        onView(withId(R.id.buttonSub)).perform(click());
-        onView(withId(R.id.button3)).perform(click());
-        onView(withId(R.id.textViewAns)).check(matches(withText("4-3")));
-        onView(withId(R.id.buttonEql)).perform(click());
-        onView(withId(R.id.textViewAns)).check(matches(withText("1")));
-
-        onView(withId(R.id.buttonDel)).perform(click());
-        onView(withId(R.id.textViewAns)).check(matches(withText("")));
 
     }
 
