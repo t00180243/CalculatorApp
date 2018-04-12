@@ -70,6 +70,9 @@ after_success:
 - "./gradlew jacocoTestReport coveralls"
 - codecov
 - sonar-scanner
+-  openssl aes-256-cbc -K $encrypted_e94b0960ac4d_key -iv $encrypted_e94b0960ac4d_iv -in CalculatorMobileApp-9f59a291749c.json.enc -out CalculatorMobileApp-9f59a291749c.json -d
+- wget https://dl.google.com/dl/cloudsdk/channels/rapid/
+
 #deploy:
  #provider: heroku
 # api_key: "c3578822-2ed0-48f5-a159-7d89fc4d5c59"
