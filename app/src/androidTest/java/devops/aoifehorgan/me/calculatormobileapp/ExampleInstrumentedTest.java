@@ -22,34 +22,43 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+
 public class ExampleInstrumentedTest {
-    @Test
+
+   /* @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("devops.aoifehorgan.me.calculatormobileapplication", appContext.getPackageName());
-    }
+    }*/
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testAddition() {
+    public void testButtons() {
         // Type text and then press the button.
         onView(withId(R.id.button2)).perform(click());
         onView(withId(R.id.buttonAdd)).perform(click());
         onView(withId(R.id.button2)).perform(click());
         onView(withId(R.id.textViewAns)).check(matches(withText("2+2")));
         onView(withId(R.id.buttonEql)).perform(click());
-        onView(withId(R.id.textViewAns)).check(matches(withText("1.0")));
+        onView(withId(R.id.textViewAns)).check(matches(withText("4")));
 
-    }
-    @Test
-    public void clear() {
+        onView(withId(R.id.button4)).perform(click());
+        onView(withId(R.id.buttonSub)).perform(click());
+        onView(withId(R.id.button3)).perform(click());
+        onView(withId(R.id.textViewAns)).check(matches(withText("4-3")));
+        onView(withId(R.id.buttonEql)).perform(click());
+        onView(withId(R.id.textViewAns)).check(matches(withText("1")));
+
         onView(withId(R.id.buttonDel)).perform(click());
         onView(withId(R.id.textViewAns)).check(matches(withText("")));
+
     }
+
 }
 
 
