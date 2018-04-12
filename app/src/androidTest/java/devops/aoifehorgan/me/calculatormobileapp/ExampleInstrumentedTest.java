@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
 
 public class ExampleInstrumentedTest {
 
-   /* @Test
+    @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("devops.aoifehorgan.me.calculatormobileapplication", appContext.getPackageName());
-    }*/
+    }
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
