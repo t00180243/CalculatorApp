@@ -1,7 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
-
 android {
+    signingConfigs {
+        config {
+            keyAlias 'CalcKey'
+            keyPassword 'Fifi111222333'
+            storeFile file('C:/Users/Aoife Horgan/Documents/android.jks')
+            storePassword 'fifi111222333'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "devops.aoifehorgan.me.calculatormobileapp"
@@ -22,6 +29,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     sourceSets {
@@ -40,7 +48,6 @@ android {
         forkEvery = 1
     }
     testOptions.unitTests.includeAndroidResources true
-
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -51,8 +58,7 @@ android {
         androidTestImplementation 'com.android.support.test:runner:1.0.1'
         androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     }
-
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
         reports {
             xml.enabled true
             xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
@@ -69,4 +75,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
             println "coverage report generated at file://${reports.html.destination}/index.html"
         }
     }
+}
+dependencies {
 }
