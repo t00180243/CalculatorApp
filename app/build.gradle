@@ -30,6 +30,16 @@ android {
             resources.srcDir file('src/test/res')
         }
     }
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            exceptionFormat 'full'
+        }
+        maxHeapSize = '2048m'
+        maxParallelForks = 1
+        forkEvery = 1
+    }
+    testOptions.unitTests.includeAndroidResources true
 
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,6 +51,7 @@ android {
         androidTestImplementation 'com.android.support.test:runner:1.0.1'
         androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     }
+
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
         reports {
             xml.enabled true
