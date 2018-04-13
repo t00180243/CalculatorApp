@@ -2,12 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 android {
     signingConfigs {
-        config {
-            keyAlias 'CalcKey'
-            keyPassword 'Fifi111222333'
-            storeFile file('C:/Users/Aoife Horgan/Documents/android.jks')
-            storePassword 'fifi111222333'
-        }
     }
     compileSdkVersion 26
     defaultConfig {
@@ -26,11 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testCoverageEnabled true
         }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
-        }
+
     }
     sourceSets {
         testLocal {
