@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 26
@@ -12,19 +13,49 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        testLocal {
+            java.srcDir file('src/test/java')
+            resources.srcDir file('src/test/res')
         }
     }
 
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation 'com.android.support:appcompat-v7:26.1.0'
+        //noinspection GradleDependency
         implementation 'com.android.support.constraint:constraint-layout:1.0.2'
         implementation 'com.google.firebase:firebase-core:12.0.1'
         testImplementation 'junit:junit:4.12'
         androidTestImplementation 'com.android.support.test:runner:1.0.1'
         androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    }
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+        reports {
+            xml.enabled true
+            xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${buildDir}/reports/coverage")
+        }
+
+        executionData = files "${buildDir}/jacoco/testDebugUnitTest.exec"
+        sourceDirectories = files android.sourceSets.main.java.srcDirs
+        classDirectories = fileTree(dir: "${buildDir}/intermediates/classes/debug",
+                exclude: ['**/R.class', '**/R$*.class'])
+
+        doLast {
+            println "coveralls report has been generated to file://${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+            println "coverage report generated at file://${reports.html.destination}/index.html"
+        }
     }
 }
